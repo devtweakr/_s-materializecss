@@ -15,7 +15,7 @@
 get_header();
 ?>
 
-	<div id="primary" class="content-area">
+	<div id="primary" class="content-area col s12 l9">
 		<main id="main" class="site-main">
 
 		<?php

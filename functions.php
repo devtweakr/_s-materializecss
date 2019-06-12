@@ -123,17 +123,21 @@ function _s_materializecss_scripts() {
 	// Get the theme data
 	$the_theme = wp_get_theme();
 	wp_enqueue_style( '_s-materializecss-google-fonts', 'https://fonts.googleapis.com/css?family=Material+Icons', false ); // add e.g. |Ranga:400,700&subset=latin-ext to add more fonts
-	wp_enqueue_style( '_s-materializecss-style', get_template_directory_uri() . '/css/style.min.css', array(), $the_theme->get( 'Version' ) );
+	wp_enqueue_style( '_s-materializecss-style', get_template_directory_uri() . '/assets/dist/css/_smaterialize.css', array(), $the_theme->get( 'Version' ) );
 
-	wp_enqueue_script( 'materializejs', get_template_directory_uri() . '/js/materialize.min.js', array(), $the_theme->get( 'Version' ), true );
-	wp_enqueue_script( '_s-materialize-js', get_template_directory_uri() . '/js/_s-materialize.js', array('jquery'), $the_theme->get( 'Version' ), true );
-	wp_enqueue_script( '_s-materializecss-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), $the_theme->get( 'Version' ), true );
+	wp_enqueue_script( 'materializejs', get_template_directory_uri() . '/assets/dist/js/materialize.min.js', array(), $the_theme->get( 'Version' ), true );
+	wp_enqueue_script( '_s-materialize-js', get_template_directory_uri() . '/assets/dist/js/_smaterialize.js', array('jquery'), $the_theme->get( 'Version' ), true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
 add_action( 'wp_enqueue_scripts', '_s_materializecss_scripts' );
+
+/**
+ * Nav Walker for Materialize
+ */
+require get_template_directory() . '/inc/class_materialize-navwalker.php';
 
 /**
  * Implement the Custom Header feature.
