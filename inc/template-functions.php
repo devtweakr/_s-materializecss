@@ -43,10 +43,11 @@ function _s_materializecss_page_navi() {
 	global $wp_query;
     $big = 999999999; // need an unlikely integer
     $pagination_items =  paginate_links( array(
-        'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
-        'format' => '?paged=%#%',
-        'current' => max( 1, get_query_var('paged') ),
-        'total' => $wp_query->max_num_pages,
+        'base'               => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+        'format'             => '?paged=%#%',
+        'current'            => max( 1, get_query_var('paged') ),
+        'total'              => $wp_query->max_num_pages,
+        'mid_size'           => 3,
         'type'               => 'array',
         'prev_text'          => __('<i class="material-icons">chevron_left</i>'),
         'next_text'          => __('<i class="material-icons">chevron_right</i>'),
@@ -58,7 +59,11 @@ function _s_materializecss_page_navi() {
         foreach ($pagination_items as $item) {
             if (strpos($item, '<span') === false) {
                 echo '<li class="waves-effect">' . $item . '</li>';
-            } else {
+            }
+            elseif($item == "&#8230;") {
+                echo '<li class="waves-effect">whoops</li>';
+            }
+            else {
                 $item = str_replace('<span', '<a href="#"', $item);
                 $item = str_replace('</span>', '</a>', $item);
                 echo '<li class="active">' . $item . '</li>';
