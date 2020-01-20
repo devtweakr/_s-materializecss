@@ -4,6 +4,7 @@ var OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 module.exports = {
   entry: {
+    materialize: "./assets/src/js/materialize.js",
     _smaterialize: "./assets/src/js/index.js",
     "_smaterialize-editor": "./assets/src/js/gutenberg.js"
   },
