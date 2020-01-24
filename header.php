@@ -49,26 +49,30 @@
 			<div class="nav-wrapper container">
 				<a href="#" data-target="mobile-menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 				<?php
-				wp_nav_menu( array(
-					'theme_location' 	=> 'menu-1',
-					'menu_id'        	=> 'primary-menu',
-					'menu_class'		=> 'hide-on-med-and-down',
-					'container'       => '',
-					'walker'				=>	new Materialize_Walker_Nav_Menu(),
-				) );
+					if ( has_nav_menu( 'menu-1' ) ) {
+						wp_nav_menu( array(
+							'theme_location' 	=> 'menu-1',
+							'menu_id'        	=> 'primary-menu',
+							'menu_class'		=> 'hide-on-med-and-down',
+							'container'       => '',
+							'walker'				=>	new Materialize_Walker_Nav_Menu(),
+						) );
+					}
 				?>
 			</div><!-- .nav-wrapper -->
 		</nav><!-- #site-navigation -->
 	</header><!-- #masthead -->
 	
 	<?php
-		wp_nav_menu( array(
-			'theme_location' 	=> 'menu-1',
-			'menu_class'		=> 'sidenav',
-			'menu_id'        	=> 'mobile-menu',
-			'container'       => '',
-			'walker'				=>	new Materialize_Walker_Nav_Menu(),
-		) );
+		if ( has_nav_menu( 'menu-1' ) ) {
+			wp_nav_menu( array(
+				'theme_location' 	=> 'menu-1',
+				'menu_class'		=> 'sidenav',
+				'menu_id'        	=> 'mobile-menu',
+				'container'       => '',
+				'walker'				=>	new Materialize_Walker_Nav_Menu(),
+			) );
+		}
 	?>
 
 	<div id="content" class="site-content container">
